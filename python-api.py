@@ -5,12 +5,10 @@ Created on Nov 18, 2018
 '''
 
 import os
-from flask_migrate import Migrate
 from app import create_app, db
 from app.models import Book
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-migrate = Migrate(app, db)
 
 
 @app.shell_context_processor
