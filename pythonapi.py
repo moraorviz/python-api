@@ -1,36 +1,35 @@
 import os
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-from flask_bootstrap import Bootstrap
-from flask_moment import Moment
+from app import create_app, db
+from app.models import Book
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'YdGa0cCqUoheWTCmdd59'
-app.config['SQLALCHEMY_DATABASE_URI'] =\
-    'sqlite:///' + os.path.join(basedir, 'data.sqlite')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
 
-bootstrap = Bootstrap(app)
-moment = Moment(app)
-db = SQLAlchemy(app)
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
+@app.shell_context_processor
+def make_shell_context():
+    return dict(db=db, Book=Book)
 
 
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('500.html'), 500
+@app.cli.command()
+def test():
+    """Run the unit tests."""
+    import unittest
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner(verbosity=2).run(tests)
 
-
-@app.route('/python-api')
+@app.route('/python-api/v1')
 def index():
     return '<h1>Python API</h1>'
 
+        
 
 
+
+
+
+
+
+
+
+    
 
