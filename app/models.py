@@ -17,7 +17,7 @@ class CreativeWork(Thing):
         self.autor = autor
     
     
-class Book(CreativeWork):
+class Book(db.Model, CreativeWork):
     __tablename__ = 'libros'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(64), unique=True)
