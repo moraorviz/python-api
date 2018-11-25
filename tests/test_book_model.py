@@ -75,7 +75,7 @@ class BookModelTestCase(unittest.TestCase):
     def test_to_jsonld(self):
         print('Iniciando el test to json-ld')
         au = Person(nombre='Fiodor', apellidos='Dostoyevski')
-        fp = datetime.date(1, 1, 1867)
+        fp = datetime.date(1867, 1, 1)
         cw = CreativeWork(nombre='Crimen y Castigo',
                           autor=au, fechapub = fp)
         b = Book(nombre=cw.nombre, autor=cw.autor.nombre + ' ' 
@@ -105,10 +105,11 @@ class BookModelTestCase(unittest.TestCase):
             'datePublished': '1867/01/01',
             'isbn': '0-7582-3013-3'
         }
-        book = Book.from_json(jsonld_request)
+        
+        book = Book.from_jsonld(jsonld_request)
         self.assertEqual(book.nombre, 'Crimen y Castigo')
         self.assertEqual(book.autor, 'Fiodor Dostoyevski')
-        self.assertEqual(book.fechapub, '01/01/1867')
+        self.assertEqual(book.fechapub.strftime('%Y/%m/%d'), '1867/01/01')
         self.assertEqual(book.isbn, '0-7582-3013-3')
         
         

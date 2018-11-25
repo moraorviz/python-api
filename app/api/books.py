@@ -28,10 +28,10 @@ def get_book(id):
 
 @api.route('/books/', methods=['POST'])
 def new_book():
-    book = Book.from_json(request.json)
+    book = Book.from_jsonld(request.json)
     db.session.add(book)
     db.session.commit()
-    return jsonify(book.to_json()), 201, \
+    return jsonify(book.to_jsonld()), 201, \
         {'Location': url_for('api.get_book', id=book.id)}
 
 

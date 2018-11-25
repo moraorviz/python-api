@@ -53,16 +53,16 @@ class Book(db.Model, CreativeWork):
                 '@type': 'Person',
                 'name': self.autor
             },
-            'datePublished': self.fechapub.strftime('%m/%d/%Y'),
+            'datePublished': self.fechapub.strftime('%Y/%m/%d'),
             'isbn': self.isbn
         }
         return jsonld_post
     
     @staticmethod
-    def from_json(json_book):
+    def from_jsonld(json_book):
         name = json_book.get('name')
         author = json_book.get('author').get('name')
-        datePublished = datetime.strptime(json_book.get('datePublished'), '%m/%d/%Y')
+        datePublished = datetime.strptime(json_book.get('datePublished'), '%Y/%m/%d')
         isbn = json_book.get('isbn')
         if name is None or name == '':
             raise ValidationError('falta el nombre')
