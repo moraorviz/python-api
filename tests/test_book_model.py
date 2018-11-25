@@ -90,7 +90,7 @@ class BookModelTestCase(unittest.TestCase):
         expected_keys = ['url', '@context', '@type', 'author', 'datePublished', 
                             'isbn', 'name']
         self.assertEqual(sorted(json_book.keys()), sorted(expected_keys))
-        self.assertEqual('/python-api/v1/books/' + str(b.id), json_book['url'])
+        self.assertEqual('/python-api/v1/book/' + str(b.id), json_book['url'])
         
     def test_from_jsonld(self):
         print('Iniciando el test from json-ld')

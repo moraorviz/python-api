@@ -18,3 +18,5 @@ def get_entidades():
     return jsonify({
         'entidades': [entidad for entidad in inspector.get_table_names()]
     })
+    
+    

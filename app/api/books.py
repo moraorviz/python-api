@@ -8,25 +8,22 @@ from flask import jsonify, request, g, url_for, current_app
 from . import api
 from ..models import Book
 from .. import db
+import json
 
-
-@api.route('/books')
+@api.route('/book')
 def get_books():
     print('Consultando libros')
     books = Book.query.all()
-    resultList = []
-    for book in books:
-        resultList.append(jsonify(book))
-    return resultList
-    
+    json_string = json.dumps([book.to_jsonld() for book in books])
+    return json_string
 
-@api.route('/books/<int:id>')
+@api.route('/book/<int:id>')
 def get_book(id):
     book = Book.query.get_or_404(id)
     return jsonify(book.to_jsonld())
 
 
-@api.route('/books/', methods=['POST'])
+@api.route('/book', methods=['POST'])
 def new_book():
     book = Book.from_jsonld(request.json)
     db.session.add(book)
