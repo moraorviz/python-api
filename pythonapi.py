@@ -17,7 +17,7 @@ def test():
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
 
-@app.route('/python-api/v1')
+@app.route('/python-api/')
 def index():
     return '<h1>Python API</h1>'
 
