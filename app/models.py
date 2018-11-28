@@ -27,7 +27,7 @@ class CreativeWork(Thing):
             self.fechapub = fechapub
     
 class Book(db.Model, CreativeWork):
-    __tablename__ = 'libros'
+    __tablename__ = 'book'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(64), unique=True)
     autor = db.Column(db.String(64))

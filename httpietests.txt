@@ -28,3 +28,20 @@ TEST4: GET <url>/{entidad}/{id}
 
 
 
+
+
+TESTS API DE EJEMPLO
+
+http --json GET https://reqres.in/api/users?page=1
+
+
+
+
+
+
+
+
+
+
+
+

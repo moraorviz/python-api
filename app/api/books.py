@@ -14,7 +14,7 @@ import json
 def get_books():
     print('Consultando libros')
     books = Book.query.all()
-    json_string = json.dumps([book.to_jsonld() for book in books])
+    json_string = jsonify([book.to_jsonld() for book in books])
     return json_string
 
 @api.route('/book/<int:id>')
