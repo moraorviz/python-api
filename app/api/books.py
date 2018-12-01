@@ -4,11 +4,12 @@ Created on Nov 25, 2018
 @author: mario
 '''
 
-from flask import jsonify, request, g, url_for, current_app
+from flask import jsonify, request, url_for
 from . import api
+from .decorator import crossdomain
 from ..models import Book
 from .. import db
-import json
+from flask_cors import cross_origin
 
 @api.route('/book')
 def get_books():
@@ -22,8 +23,7 @@ def get_book(id):
     book = Book.query.get_or_404(id)
     return jsonify(book.to_jsonld())
 
-
-@api.route('/book', methods=['POST'])
+@api.route('/book', methods=['POST', 'OPTIONS'])
 def new_book():
     book = Book.from_jsonld(request.json)
     db.session.add(book)

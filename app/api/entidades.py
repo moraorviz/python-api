@@ -6,7 +6,7 @@ Created on Nov 25, 2018
 
 from flask import current_app, jsonify
 from sqlalchemy import create_engine, inspect
-from sqlalchemy.engine import reflection
+from flask_cors import cross_origin
 from . import api
 
 

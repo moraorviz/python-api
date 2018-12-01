@@ -5,7 +5,7 @@ Created on Nov 24, 2018
 '''
 
 from . import db
-from flask import current_app, request, url_for
+from flask import url_for
 from datetime import datetime
 from app.exceptions import ValidationError
 

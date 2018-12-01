@@ -10,6 +10,9 @@ TEST1.2: POST <url>/{entidad}
 echo '{ "@context": "http://schema.org", "@type": "Book", "name": "El nido de la serpiente", "author": { "@type": "Person", "name": "Pedro Juan Gutiérrez"}, "datePublished": "2006/01/01", "isbn": "0-7583-3013-3"'} | \
 http --json POST http://127.0.0.1:5000/python-api/v1/book
 
+echo '{ "@context": "http://schema.org", "@type": "Book", "name": "Crimen y Castigo", "author": { "@type": "Person", "name": "Fiodor Dostoevsky"}, "datePublished": "1866/01/01", "isbn": "0-7583-3013-4"'} | \
+http --json POST http://127.0.0.1:5000/python-api/v1/book
+
 TEST2: GET <url>
 (venv) http --json GET http://127.0.0.1:5000/python-api/v1/
 
