@@ -6,10 +6,8 @@ Created on Nov 25, 2018
 
 from flask import jsonify, request, url_for
 from . import api
-from .decorator import crossdomain
 from ..models import Book
 from .. import db
-from flask_cors import cross_origin
 
 @api.route('/book')
 def get_books():

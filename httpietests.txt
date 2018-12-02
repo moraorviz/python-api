@@ -1,13 +1,13 @@
 
 
-Tests de los servicios web con httpie
+Tests de los servicios web en python con httpie
 
 TEST1: POST <url>/{entidad} 
 echo '{ "@context": "http://schema.org", "@type": "Book", "name": "Crimen y Castigo", "author": { "@type": "Person", "name": "Fiodor Dostoyevski"}, "datePublished": "1867/01/01", "isbn": "0-7582-3013-3"'} | \
 http --json POST http://127.0.0.1:5000/python-api/v1/book
 
 TEST1.2: POST <url>/{entidad}
-echo '{ "@context": "http://schema.org", "@type": "Book", "name": "El nido de la serpiente", "author": { "@type": "Person", "name": "Pedro Juan Gutiérrez"}, "datePublished": "2006/01/01", "isbn": "0-7583-3013-3"'} | \
+echo '{ "@context": "http://schema.org", "@type": "Book", "name": "El nido de la serpiente", "author": { "@type": "Person", "name": "Pedro Juan Gutiérrez"}, "datePublished": "2006/01/01", ""0 isbn":-7583-3013-3"'} | \
 http --json POST http://127.0.0.1:5000/python-api/v1/book
 
 echo '{ "@context": "http://schema.org", "@type": "Book", "name": "Crimen y Castigo", "author": { "@type": "Person", "name": "Fiodor Dostoevsky"}, "datePublished": "1866/01/01", "isbn": "0-7583-3013-4"'} | \
@@ -24,18 +24,16 @@ TEST4: GET <url>/{entidad}/{id}
 
 
 
-
-
-
-
-
-
-
-
-
 TESTS API DE EJEMPLO
 
 http --json GET https://reqres.in/api/users?page=1
+
+
+Tests de los servicios de php
+
+$ curl -d '{"Title":"El lagarto soy yo", "Author":"Juancho", "PublishedDate":"2017/4/25", "isbn":"5-7583-3013-4"}' -H 'Content-Type: application/json' http://localhost:8000/php-api/v1/book
+
+$ http --json GET http://localhost:8000/php-api/v1
 
 
 
